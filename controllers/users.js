@@ -67,5 +67,19 @@ module.exports = {
             res.status(400).json({success: false})
         }
         
-      }
+      },
+      show: async (req, res) => {
+        try {
+            const user = await User.findById(req.params.id)
+            res.json({
+                status: true,
+                data: user,
+                method: req.method,
+                url:req.url,
+                message: "Data berhasil didapatkan"
+            })
+        } catch (error){
+            res.status(400).json({success: false})
+        }
+      },
 }
